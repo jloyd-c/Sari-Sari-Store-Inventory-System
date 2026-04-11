@@ -16,6 +16,7 @@ while True:
         continue
 
     if user_input == 1:
+
         product_name = input("Enter Product Name: ")
         if product_name.strip() == "":
             print("You don't enter a product name!")
@@ -23,12 +24,24 @@ while True:
 
         product_price = input("Enter Product Price: ")
         if product_price.strip() == "":
-            print("You don't enter a product price!")
+            print("You don't enter price")
+            continue
+
+        try:
+            product_price = int(product_price)
+        except ValueError:
+            print("Invalid input! Numbers only.")
             continue
 
         product_stock = input("Enter Stock: ")
-        if product_stock.strip() == "":
-            print("You don't enter a stock amount!")
+        if product_stock == "":
+            print("You don't enter stock")
+            continue
+
+        try:
+            product_stock = int(product_stock)
+        except ValueError:
+            print("Invalid input! Numbers only.")
             continue
 
         product_details = {
