@@ -3,14 +3,20 @@ products = []
 def menu():
     print("1. Add Products")
     print("2. Show Products")
+    print("3. Update Stocks")
 
 def add_product(details):
     products.append(details)
     print("Add product successfully!")
 
 def view_inventory():
-    for index, i in enumerate(products, start=1):
-        print(f"{index}. {i["name"]}, price : {i["price"]}, stock : {i["stock"]}.")
+    for index, product in enumerate(products, start=1):
+        print(f"{index}. {product["name"]}, price : {product["price"]}, stock : {product["stock"]}.")
+
+def update_stock(product_choice, product_new_value):
+    for index, product in enumerate(products, start=1):
+        if product_choice == index:
+            product["stock"] = product_new_value
     
 while True:
     menu()
@@ -61,6 +67,32 @@ while True:
             print("Empty products")
         else:
             view_inventory()
-    
+
+    elif user_input == 3:
+        view_inventory()
+        product_choice = input("Choose a number to update stock: ")
+        if product_choice.strip() == "":
+            print("You didn't enter a stock number")
+            continue
+        
+        try:
+            product_choice = int(product_choice)
+        except ValueError:
+            print("Invalid input! Numbers only.")
+            continue
+
+        product_new_value = input("Updated stock value: ")
+        if product_new_value.strip() == "":
+            print("You didn't enter a new stock value")
+            continue
+
+        try: 
+            product_new_value = int(product_new_value)
+        except ValueError:
+            print("Invalid input! Numbers only.")
+            continue
+
+        update_stock(product_choice, product_new_value)
+
     elif user_input == 9:
         break
