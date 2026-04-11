@@ -4,6 +4,7 @@ def menu():
     print("1. Add Products")
     print("2. Show Products")
     print("3. Update Stocks")
+    print("4. Delete Products")
 
 def add_product(details):
     products.append(details)
@@ -93,6 +94,23 @@ while True:
             continue
 
         update_stock(product_choice, product_new_value)
+
+    elif user_input == 4:
+        view_inventory()
+
+        delete_product = input("Enter product to remove: ")
+        if delete_product.strip() == "":
+            print("You didn't enter a product number!")
+            continue
+
+        try:
+            delete_product = int(delete_product)
+        except ValueError:
+            print("Invalid input! Numbers only.")
+            continue
+
+        if len(products) >= delete_product -1 and delete_product -1 >= 0:
+            products.pop(delete_product - 1)
 
     elif user_input == 9:
         break
