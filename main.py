@@ -15,6 +15,8 @@ def menu():
     print("4. Delete Products")
     print("5. Search Products")
     print("6. Low Stock Status")
+    print("7. Sell Products")
+    print("9. Exit System")
 
 def add_product(details):
     products.append(details)
@@ -50,6 +52,25 @@ def low_stock():
 
     if not low_stock:
         print("No low stock products")
+
+def sell_product(sellect_product):
+    for index, product in enumerate(products, start=1):
+        if sellect_product == index:
+            user = input("Enter stock ammount sold: ")
+            if user.strip() == "":
+                print("You didn't enter a stock number")
+                continue
+            
+            try:
+                user = int(user)
+            except ValueError:
+                print("Invalid input! Numbers only.")
+                continue
+            
+            if product["stock"] < user:
+                print("Sorry stock didn't meet the stock needed")
+            elif product["stock"] >= user:
+                product["stock"] -= user
         
             
 while True:
@@ -152,6 +173,22 @@ while True:
 
     elif user_input == 6:
         low_stock()
+
+    elif user_input == 7:
+        view_inventory()
+
+        select_product = input("Choose product to sell: ")
+        if select_product.strip() == "":
+            print("You didn't enter a product number")
+            continue
+        
+        try:
+            select_product = int(select_product)
+        except ValueError:
+            print("Invalid input! Numbers only.")
+            continue
+
+        sell_product(select_product)
 
     elif user_input == 9:
         break

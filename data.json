@@ -8,5 +8,15 @@
         "name": "bigas",
         "price": 1,
         "stock": 1
+    },
+    {
+        "name": "ito bago",
+        "price": 20,
+        "stock": 8
+    },
+    {
+        "name": "laptop",
+        "price": 10000,
+        "stock": 7
     }
 ]
