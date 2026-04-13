@@ -16,6 +16,7 @@ def menu():
     print("5. Search Products")
     print("6. Low Stock Status")
     print("7. Sell Products")
+    print("8. Summary Report")
     print("9. Exit System")
 
 def add_product(details):
@@ -71,6 +72,32 @@ def sell_product(sellect_product):
                 print("Sorry stock didn't meet the stock needed")
             elif product["stock"] >= user:
                 product["stock"] -= user
+
+def summary_report():
+    total_value = 0
+    total_number = len(products)
+
+    highest_stock = products[0]
+    lowest_stock = products[0]
+
+    for product in products:
+        product_stocks = product["stock"]
+        product_prices = product["price"]
+
+        total_value += product_stocks * product_prices
+
+        # highest stock
+        if product_stocks > highest_stock["stock"]:
+            highest_stock = product
+
+        # lowest stock
+        if product_stocks < lowest_stock["stock"]:
+            lowest_stock = product
+
+    print(f"Total number of products: {total_number}")
+    print(f"Total value of inventory: {total_value}")
+    print(f"Product with highest stock: {highest_stock['name']}")
+    print(f"Product with lowest stock: {lowest_stock['name']}")
         
             
 while True:
@@ -189,6 +216,9 @@ while True:
             continue
 
         sell_product(select_product)
+
+    elif user_input == 8:
+        summary_report()
 
     elif user_input == 9:
         break
