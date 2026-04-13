@@ -1,6 +1,12 @@
 import json
 
-products = []
+try:
+    with open('data.json', 'r',  encoding='utf-8') as file:
+        products = json.load(file)
+except FileNotFoundError:
+    products = []
+except json.decoder.JSONDecodeError:
+    products = []
 
 def menu():
     print("1. Add Products")
