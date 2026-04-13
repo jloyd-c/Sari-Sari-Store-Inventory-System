@@ -5,6 +5,7 @@ def menu():
     print("2. Show Products")
     print("3. Update Stocks")
     print("4. Delete Products")
+    print("5. Search Products")
 
 def add_product(details):
     products.append(details)
@@ -18,6 +19,19 @@ def update_stock(product_choice, product_new_value):
     for index, product in enumerate(products, start=1):
         if product_choice == index:
             product["stock"] = product_new_value
+
+def search_products(search_product):
+    found = False
+    for index, product in enumerate(products, start=1):
+
+        product["name"].lower()
+
+        if search_product.lower() in product["name"]:
+            print(f"{index}. {product["name"]}, price : {product["price"]}, stock : {product["stock"]}.")
+            found = True
+    if not found:
+        print("No matching name in products")
+            
     
 while True:
     menu()
@@ -111,6 +125,10 @@ while True:
 
         if len(products) >= delete_product -1 and delete_product -1 >= 0:
             products.pop(delete_product - 1)
+    
+    elif user_input == 5:
+        search_product = input("Enter a product name: ")
 
+        search_products(search_product)
     elif user_input == 9:
         break
